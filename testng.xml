@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- <suite name="AllTestsSuite" verbose="1"> -->
+    <suite name="Annotation Execution Suite" >
+        <test name="MyTestGroup">
+        <parameter name="program"  value="Bootcamp API Automation"/>
+            <classes>
+                <!-- <class name="LifeCycleExample" /> -->
+                 <!-- <class name="RestAssuredImpl" /> -->
+                <class name="RestAssuredImplAdv" />
+            </classes>
+        </test>
+    </suite>
+    
+<!-- </suite> -->
