@@ -1,3 +1,5 @@
 LifeCycleExample.class
+api/BooksCollectionAPI.class
+base/BaseTest.class
 RestAssuredImpl.class
 RestAssuredImplAdv.class

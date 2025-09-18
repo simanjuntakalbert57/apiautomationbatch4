@@ -6,9 +6,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import api.BooksCollectionAPI;
+import base.BaseTest;
 import io.restassured.response.Response;
 
-public class RestAssuredImplAdv {
+public class RestAssuredImplAdv extends BaseTest {
     /*
      * 1. Test tanpa authentication
      * 2. Test dengan authentication
@@ -30,26 +32,33 @@ public class RestAssuredImplAdv {
         } 
      */
 
-    String token;
+    // String token;
+
+    // @BeforeClass
+    // public void generate_token(){
+    //     System.out.println("Generate Token");
+    //     String requestBody = "{\n" + //
+    //                     "  \"userName\": \"afteroffice2@gmail.com\",\n" + //
+    //                     "  \"password\": \"AfterOffice@123\"\n" + //
+    //                     "}";
+    //     Response response = 
+    //             given()
+    //                 .baseUri("https://demoqa.com/Account/v1/GenerateToken")
+    //                 .header("Content-Type", "application/json")
+    //                 .header("accept", "application/json")
+    //                 .body(requestBody)
+    //             .when()
+    //                 .post();
+    //     token = response.jsonPath().getString("token");
+    // }
+
+
+    public BooksCollectionAPI booksCollectionAPI;
 
     @BeforeClass
-    public void generate_token(){
-        System.out.println("Generate Token");
-        String requestBody = "{\n" + //
-                        "  \"userName\": \"afteroffice2@gmail.com\",\n" + //
-                        "  \"password\": \"AfterOffice@123\"\n" + //
-                        "}";
-        Response response = 
-                given()
-                    .baseUri("https://demoqa.com/Account/v1/GenerateToken")
-                    .header("Content-Type", "application/json")
-                    .header("accept", "application/json")
-                    .body(requestBody)
-                .when()
-                    .post();
-        token = response.jsonPath().getString("token");
+    public void setup(){
+        booksCollectionAPI = new BooksCollectionAPI();
     }
-
 
     @Test
     public void verify_get_books(){
@@ -71,36 +80,32 @@ public class RestAssuredImplAdv {
                         "  \"userId\": \"0da7426c-da11-4228-9693-28831e0834b1\",\n" + //
                         "  \"collectionOfIsbns\": [\n" + //
                         "    {\n" + //
-                        "      \"isbn\": \"9781491904244\"\n" + //
+                        "      \"isbn\": \"9781449325862\"\n" + //
                         "    }\n" + //
                         "  ]\n" + //
                         "}";
-        Response response = given()
-            .baseUri("https://demoqa.com/BookStore/v1/Books")
-            .header("Content-Type", "application/json")
-            .header("Authorization", "Bearer " + token)
-            .body(requestBody)
-        .when()
-            .post();
+        // Response response = given()
+        //     .baseUri("https://demoqa.com/BookStore/v1/Books")
+        //     .header("Content-Type", "application/json")
+        //     .header("Authorization", "Bearer " + token)
+        //     .body(requestBody)
+        // .when()
+        //     .post();
+
+        Response response = booksCollectionAPI.addBooksToCollection(requestBody);
+        System.out.println("Response dari Add Books to Collection" + response.asPrettyString());
 
         Assert.assertEquals(response.statusCode(), 201, "Status code should be 200");
-        Assert.assertTrue(response.jsonPath().getString("books[0].isbn").equals("9781491904244"), "ISBN should be 9781491904244");
+        Assert.assertTrue(response.jsonPath().getString("books[0].isbn").equals("9781449325862"), "ISBN should be 9781491904244");
     }
 
     @Test(dependsOnMethods = {"add_books_to_collection"})
     public void delete_books_from_collection(){
         System.out.println("Delete Books from Collection");
         String requestBody = "{\n" + //
-                        "  \"isbn\": \"9781491904244\",\n" + //
                         "  \"userId\": \"0da7426c-da11-4228-9693-28831e0834b1\"\n" + //
                         "}";
-        Response response = given()
-            .baseUri("https://demoqa.com/BookStore/v1/Book")
-            .header("Content-Type", "application/json")
-            .header("Authorization", "Bearer " + token)
-            .body(requestBody)
-        .when()
-            .delete();
+        Response response = booksCollectionAPI.deleteBooksFromCollection(requestBody);
         Assert.assertEquals(response.statusCode(), 204, "Status code should be 204");
     }
 }
