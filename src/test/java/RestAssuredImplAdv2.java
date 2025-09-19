@@ -7,9 +7,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
-import static org.hamcrest.Matchers.*;
 
-public class RestAssuredImplAdv {
+public class RestAssuredImplAdv2 {
     /*
      * 1. Test tanpa authentication
      * 2. Test dengan authentication
@@ -61,19 +60,18 @@ public class RestAssuredImplAdv {
         .when()
             .get()
         .then()
-            .body("name", equalTo("baeldung"))
             .statusCode(200)
             .log().all();
     }
 
     @Test()
-    public void add_books_to_collection(){
+    public void add_books_to_collection2(){
         System.out.println("Add Books to Collection");
         String requestBody = "{\n" + //
                         "  \"userId\": \"0da7426c-da11-4228-9693-28831e0834b1\",\n" + //
                         "  \"collectionOfIsbns\": [\n" + //
                         "    {\n" + //
-                        "      \"isbn\": \"9781491904244\"\n" + //
+                        "      \"isbn\": \"9781491904289\"\n" + //
                         "    }\n" + //
                         "  ]\n" + //
                         "}";

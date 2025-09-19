@@ -103,6 +103,7 @@ public class RestAssuredImpl {
             .delete()
         .then()
             .statusCode(200)
+            
             .log().all();
     }
 

@@ -1,0 +1,5 @@
+BASE_URI=https://demoqa.com/BookStore/v1
+
+USERNAME=<USERNAME>
+PASSWORD=<PASSWORD
+USER_ID_=<USER_ID>
