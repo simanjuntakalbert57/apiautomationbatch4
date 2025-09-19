@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 
 public class BooksCollectionAPI{ 
 
-    public static <T> Response addBooksToCollectionAPI(String requestBody){ 
+    public static Response addBooksToCollectionAPI(String requestBody){ 
         return  given()
                 .body(requestBody).log().all()
                 .when()
