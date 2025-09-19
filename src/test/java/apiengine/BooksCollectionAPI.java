@@ -2,12 +2,12 @@ package apiengine;
 
 import static io.restassured.RestAssured.given;
 
-
+import api.example.model.request.RequestAddBooks;
 import io.restassured.response.Response;
 
 public class BooksCollectionAPI{ 
 
-    public static Response addBooksToCollectionAPI(String requestBody){ 
+    public static <T> Response addBooksToCollectionAPI(String requestBody){ 
         return  given()
                 .body(requestBody).log().all()
                 .when()

@@ -5,10 +5,11 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import api.example.base.BaseTest;
-import api.example.model.ResponseAddBooks;
+import api.example.model.request.RequestAddBooks;
+import api.example.model.response.ResponseAddBooks;
+import api.example.utils.Helper;
 import apiengine.BooksCollectionAPI;
 import io.restassured.response.Response;
 
@@ -31,9 +32,7 @@ public class BookImplementScenario extends BaseTest  {
         Response response = BooksCollectionAPI.addBooksToCollectionAPI(requestBody);
         System.out.println(response.asPrettyString());
         Assert.assertEquals(response.statusCode(), 201, "Status code should be 200");
-        // Assert.assertTrue(response.jsonPath().getString("books[0].isbn").equals("9781593277574"), "ISBN should be 9781593277574");
-        ObjectMapper objectMapper = new ObjectMapper();
-        ResponseAddBooks responseAddBooks = objectMapper.readValue(response.asString(), ResponseAddBooks.class);
+        ResponseAddBooks responseAddBooks = Helper.convertResponseToObject(response, ResponseAddBooks.class);
 
         System.out.println("-------- Convert Json to Object ---------");
         System.out.println(responseAddBooks.isbn[0].isbn);
@@ -41,7 +40,7 @@ public class BookImplementScenario extends BaseTest  {
     }
 
     @Test()
-    public void delete_book_byId_from_collection3(){
+    public void delete_book_byId_from_collection(){
         System.out.println("Delete Books from Collection");
         String requestBody = "{\n" + //
                         "  \"isbn\": \"9781593277574\",\n" + //

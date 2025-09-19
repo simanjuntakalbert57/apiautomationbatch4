@@ -1,16 +1,15 @@
-package api.example.model;
+package api.example.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestAddBooks {
-
     @JsonProperty("userId")
     public String userId;
 
     @JsonProperty("collectionOfIsbns")
-    public CollectionOfIsbn[] collectionOfIsbns;
+    public Isbn[] collectionOfIsbns;
 
-    public static class CollectionOfIsbn {
+    public static class Isbn {
         @JsonProperty("isbn")
         public String isbn;
     }

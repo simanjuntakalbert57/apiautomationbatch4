@@ -1,10 +1,13 @@
 package convert_data;
 
+import java.util.List;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import api.example.model.RequestAddBooks;
+import api.example.model.request.RequestAddBooks;
+import api.example.utils.Helper;
 
 public class ConvertData {
     public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
@@ -28,5 +31,4 @@ public class ConvertData {
         System.out.println(requestAddBooks.collectionOfIsbns[0].isbn);
         System.out.println(requestAddBooks.collectionOfIsbns[1].isbn);
     }
-
 }
