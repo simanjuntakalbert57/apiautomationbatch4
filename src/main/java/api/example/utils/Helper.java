@@ -15,9 +15,12 @@ public class Helper {
     private static ObjectMapper objectMapper, mapper = new ObjectMapper();
     private static final String DATA_PATH = "src/test/java/resources/";
 
-    public static Dotenv loaDotenv(){
+    public static Dotenv loaDotenv() {
         if (dotenv == null) {
-            dotenv = Dotenv.load();
+            dotenv = Dotenv.configure()
+                        .directory("./")       // cari di root project
+                        .filename(".env")      // pastikan pakai titik
+                        .load();
         }
         return dotenv;
     }
