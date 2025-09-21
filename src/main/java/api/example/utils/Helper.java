@@ -32,6 +32,7 @@ public class Helper {
 
         // 2. Kalau null, fallback ke System.getenv()
         if (value == null) {
+            System.out.println("Key not found in .env, try to get from System.getenv()");
             value = System.getenv(key);
         }
 
