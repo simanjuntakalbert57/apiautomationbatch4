@@ -23,8 +23,6 @@ public class Helper {
                         .ignoreIfMissing()
                         .load();
         }
-        System.out.println("BASE_URL: " + dotenv.get("BASE_URL"));
-        System.out.println("BASE_URL: " + dotenv);
         return dotenv;
     }
 
