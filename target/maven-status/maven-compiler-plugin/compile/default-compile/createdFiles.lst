@@ -1,4 +1,12 @@
+api/example/model/response/ResponseCreateBooking$BookingDates.class
+api/example/model/response/ResponseAddBooks$IsbnBook.class
+api/example/model/response/ResponseCreateBooking$Booking.class
+api/example/model/request/RequestAddBooks$Isbn.class
+api/example/model/request/RequestAddBooks.class
 api/example/base/BaseTest.class
 api/example/utils/Helper.class
+api/example/model/response/ResponseAddBooks.class
 api/example/Main.class
+api/example/model/response/ResponseCreateBooking.class
+api/example/model/response/ResponseCreateBooking$Address.class
 api/example/utils/TokenManager.class
