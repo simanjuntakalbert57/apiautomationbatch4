@@ -22,6 +22,8 @@ public class Helper {
                         .filename(".env")      // pastikan pakai titik
                         .load();
         }
+        System.out.println("BASE_URL: " + dotenv.get("BASE_URL"));
+        System.out.println("BASE_URL: " + dotenv);
         return dotenv;
     }
 
