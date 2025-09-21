@@ -20,6 +20,7 @@ public class Helper {
             dotenv = Dotenv.configure()
                         .directory("./")       // cari di root project
                         .filename(".env")      // pastikan pakai titik
+                        .ignoreIfMissing()
                         .load();
         }
         System.out.println("BASE_URL: " + dotenv.get("BASE_URL"));
@@ -28,7 +29,19 @@ public class Helper {
     }
 
     public static String getKey(String key){
-        return loaDotenv().get(key);
+        // 1. Coba cari dari .env
+        String value = loaDotenv().get(key);
+
+        // 2. Kalau null, fallback ke System.getenv()
+        if (value == null) {
+            value = System.getenv(key);
+        }
+
+        if (value == null) {
+            throw new RuntimeException("Key not found: " + key);
+        }
+
+        return value;
     }
 
     public static <T> T convertResponseToObject(Response response, Class<T> clazz){
