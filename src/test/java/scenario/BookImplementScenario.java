@@ -28,7 +28,7 @@ public class BookImplementScenario extends BaseTest  {
 
         System.out.println("-------- Convert Json to Object ---------");
         System.out.println(responseAddBooks.isbn[0].isbn);
-        Assert.assertTrue(responseAddBooks.isbn[0].isbn.equals("9781593277574"), "ISBN should be 9781593277574");
+        Assert.assertTrue(responseAddBooks.isbn[0].isbn.equals("97815932775"), "ISBN should be 9781593277574");
     }
 
     @Test()
