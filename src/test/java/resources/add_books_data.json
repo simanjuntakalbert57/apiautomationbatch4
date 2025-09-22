@@ -1,6 +1,6 @@
 [
     {
-        "usecase": "add_books_to_collection",
+        "usecase": "add_books_to_collection1",
         "payload" : {
             "userId": "0da7426c-da11-4228-9693-28831e0834b1",
             "collectionOfIsbns": [
@@ -8,15 +8,29 @@
                     "isbn": "9781593277574"
                 }
             ]
+        },
+        "expectedValue": {
+            "books": [
+                {
+                    "isbn": "9781593277574"
+                }
+            ]
         }
     },
     {
-        "usecase": "add_books_to_collection",
+        "usecase": "add_books_to_collection2",
         "payload" : {
-            "userId": "f7d2901e-1b4c-4f3d-8e2e-2a5f3c3e8f9a",
+            "userId": "0da7426c-da11-4228-9693-28831e0834b1",
             "collectionOfIsbns": [
                 {
-                    "isbn": "9781593277574"
+                    "isbn": "9781449325862"
+                }
+            ]
+        },
+        "expectedValue": {
+            "books": [
+                {
+                    "isbn": "9781449325862"
                 }
             ]
         }

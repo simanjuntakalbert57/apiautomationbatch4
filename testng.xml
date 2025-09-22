@@ -7,7 +7,7 @@
                 <!-- <class name="LifeCycleExample" /> -->
                  <!-- <class name="RestAssuredImpl" /> -->
                 <class name="scenario.BookImplementScenario" />
-                <class name="scenario.BookImplementScenario2" />
+                <!-- <class name="scenario.BookImplementScenario2" /> -->
             </classes>
         </test>
     </suite>

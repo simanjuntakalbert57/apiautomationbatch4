@@ -17,7 +17,9 @@ public class BaseTest {
     public void beforeSuite(){
         System.out.println("This is Before Suite");
         token = TokenManager.getToken();
-        baseURI = Helper.getKey("BASE_URL");
+        baseURI = Helper.getKey("BASE_URI");
+
+        // Connect DB if needed
     }
 
     @BeforeMethod

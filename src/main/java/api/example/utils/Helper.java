@@ -93,6 +93,8 @@ public class Helper {
 
     /**
      * Get specific payload from JSON file contain multiple data
+     * meaning <T> return type is generic
+     * @param filePath
      */
     public static <T> T findByUseCase(String filePath, String usecase, Class<T> clazz) {
         try {
@@ -109,4 +111,37 @@ public class Helper {
         }
     }
 
+    /**
+     * Get specific payload from JSON file contain multiple data
+     * meaning <T> return type is generic
+     * @param filePath
+     */
+    public static <T> T findExpectedByUseCase(String filePath, String usecase, Class<T> clazz) {
+        try {
+            JsonNode rootNode = mapper.readTree(new File(DATA_PATH + filePath));
+            for (JsonNode node : rootNode) {
+                if (node.get("usecase").asText().equals(usecase)) {
+                    JsonNode payloadNode = node.get("expectedValue");
+                    return mapper.treeToValue(payloadNode, clazz);  
+                }
+            }
+            throw new RuntimeException("Usecase not found: " + usecase);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get payload from file: " + filePath, e); 
+        }
+    }
+
+    // Helper connect to DB
+
+     public static void findByUseCaseDB(String filePath, String usecase) {
+        /*
+         * Execute query to DB
+         * select * from test where usecase = 'usecase'
+         * |id|usecase| payload | expectedValue |
+         * |1 | add_books_to_collection1 | "{...}" | "{...}" |
+         * |2 | add_books_to_collection2 | "{...}" | "{...}" |
+         * 
+         * return payload and expectedValue
+         */
+     }
 }
