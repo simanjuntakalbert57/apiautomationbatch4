@@ -21,7 +21,9 @@ public class BookImplementScenario extends BaseTest  {
     public void add_books_to_collection1() throws JsonMappingException, JsonProcessingException{
         System.out.println("Add Books to Collection");
         RequestAddBooks requestAddBooks = Helper.findByUseCase("add_books_data.json", "add_books_to_collection1", RequestAddBooks.class);
+        System.out.println("response:" + requestAddBooks);
         Response response = BooksCollectionAPI.addBooksToCollectionAPI(requestAddBooks);
+        System.out.println("response:" + response.asPrettyString());
         System.out.println(response.asPrettyString());
         Assert.assertEquals(response.statusCode(), 201, "Status code should be 200");
         ResponseAddBooks responseAddBooks = Helper.convertResponseToObject(response, ResponseAddBooks.class);
